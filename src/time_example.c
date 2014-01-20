@@ -7,7 +7,7 @@ int main(int argc, char* argv[]) {
   int i;
   int delta = 0;
   for (i = 0; i < LOOP_TIMES; i++) {
-    tck tick1= rdtsc();
+    tick tick1= rdtsc();
     tick tick2= rdtsc();
     delta += tick2 - tick1;
   }
