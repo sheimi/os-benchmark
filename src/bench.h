@@ -40,6 +40,41 @@ static inline cpu_cycle rdtsc(void) {
 }
 #endif
 
+#define OUT_LOOP_MM(out, loop_count, block) {         \
+      int i;                                          \
+      double _timing_overehad = get_timing_overhead();\
+      cpu_cycle before_loop = rdtsc();                \
+      for (i = 0; i < loop_count; i++) {              \
+        block;                                        \
+      }                                               \
+      cpu_cycle end_loop = rdtsc();                        \
+      out = (end_loop - before_loop - _timing_overehad) / LOOP_TIMES; \
+    }
+
+#define _IN_LOOP_MM(out, loop_count, max, include_timing, block) {\
+      int i;                                          \
+      int real_loop = loop_count;                     \
+      unsigned long long delta = 0;                   \
+      double _t_overhead = 0.0;                       \
+      if (include_timing) {                           \
+        timing_overhead = get_timing_overhead();      \
+      }                                               \
+      for (i = 0; i < loop_count; i++) {              \
+        cpu_cycle before_op = rdtsc();                \
+        block;                                        \
+        cpu_cycle end_op = rdtsc();                   \
+        cpu_cycle delta_op = end_op - before_op;      \
+        if ((delta_op < max) && (delta_op > 0)) {     \
+          delta += delta_op;                          \
+        } else {                                      \
+          real_loop--;                                \
+        }                                             \
+      }                                               \
+      out = delta * 1.0 / real_loop - _t_overhead;    \
+    }
+
+#define IN_LOOP_MM(out, loop_count, max, block)  _IN_LOOP_MM(out, loop_count, max, true, block)
+
 double get_timing_overhead();
 double get_loop_overhaead();
 
