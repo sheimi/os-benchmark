@@ -18,7 +18,6 @@ static inline cpu_cycle rdtsc(void) {
   asm volatile ("rdtsc" : "=a"(lo), "=d"(hi));
   return ((cpu_cycle) lo) | (((cpu_cycle) hi) << 32);
 }
-
 #elif defined(__powerpc__)
 static inline cpu_cycle rdtsc(void) {
   cpu_cycle result=0;
@@ -40,25 +39,29 @@ static inline cpu_cycle rdtsc(void) {
 }
 #endif
 
-#define OUT_LOOP_MM(out, loop_count, block) {         \
+#define _OUT_LOOP_MM(out, loop_count, include_loop, block) {         \
       int i;                                          \
       double _timing_overehad = get_timing_overhead();\
+      double _loop_overhead = 0.0;                    \
+      if (include_loop)                               \
+        _loop_overhead = get_loop_overhaead();        \
       cpu_cycle before_loop = rdtsc();                \
       for (i = 0; i < loop_count; i++) {              \
         block;                                        \
       }                                               \
-      cpu_cycle end_loop = rdtsc();                        \
-      out = (end_loop - before_loop - _timing_overehad) / LOOP_TIMES; \
+      cpu_cycle end_loop = rdtsc();                   \
+      out = (end_loop - before_loop - _timing_overehad) / LOOP_TIMES - _loop_overhead; \
     }
+
+#define OUT_LOOP_MM(out, loop_count, block) _OUT_LOOP_MM(out, loop_count, true, block)
 
 #define _IN_LOOP_MM(out, loop_count, max, include_timing, block) {\
       int i;                                          \
       int real_loop = loop_count;                     \
       unsigned long long delta = 0;                   \
       double _t_overhead = 0.0;                       \
-      if (include_timing) {                           \
-        timing_overhead = get_timing_overhead();      \
-      }                                               \
+      if (include_timing)                             \
+        _t_overhead = get_timing_overhead();      \
       for (i = 0; i < loop_count; i++) {              \
         cpu_cycle before_op = rdtsc();                \
         block;                                        \
