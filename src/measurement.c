@@ -20,7 +20,7 @@ double get_timing_overhead() {
   }
 
   double timing_overhead = 0.0;
-  _IN_LOOP_MM(timing_overhead, LOOP_TIMES, 1000, false, );
+  _IN_LOOP_MM(timing_overhead, LOOP_TIMES, 1000, false, false, );
   setenv_double(TIMEING_OVERHEAD_TAG, timing_overhead);
   return timing_overhead;
 }
@@ -38,7 +38,8 @@ double get_loop_overhaead() {
 }
 
 void benchmark_time_overhead() {
-  printf("readtime overhead: %f\n", get_timing_overhead());
+  double timing_overhead = 0.0;
+  _IN_LOOP_MM(timing_overhead, LOOP_TIMES, 1000, false, true, );
 }
 
 void benchmark_loop_overhead() {

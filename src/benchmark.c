@@ -11,6 +11,7 @@ typedef struct _benchmark {
 benchmark_t benchmarks[] = {
   {"timing_overhead", benchmark_time_overhead},
   {"loop_overhead", benchmark_loop_overhead},
+  {"proc_call_overhead", benchmark_proc_call},
   {"", 0},
 };
 
