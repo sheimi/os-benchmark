@@ -32,7 +32,15 @@ double get_loop_overhaead() {
     return overhead;
   }
   double loop_overhead;
-  OUT_LOOP_MM(loop_overhead, LOOP_TIMES,);
+  _OUT_LOOP_MM(loop_overhead, LOOP_TIMES, false, );
   setenv_double(LOOP_OVERHEAD_TAG, loop_overhead);
   return loop_overhead;
+}
+
+void benchmark_time_overhead() {
+  printf("readtime overhead: %f\n", get_timing_overhead());
+}
+
+void benchmark_loop_overhead() {
+  printf("loop overhead: %f\n", get_loop_overhaead());
 }
