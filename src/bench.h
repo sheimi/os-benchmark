@@ -60,7 +60,7 @@ static inline cpu_cycle rdtsc(void) {
 
 #define OUT_LOOP_MM(out, loop_count, block) _OUT_LOOP_MM(out, loop_count, true, block)
 
-#define _IN_LOOP_MM(out, loop_count, max, include_timing, block) {\
+#define _IN_LOOP_MM(out, loop_count, max, include_timing, print_mid, block) {\
       int i;                                          \
       int real_loop = loop_count;                     \
       unsigned long long delta = 0;                   \
@@ -74,6 +74,11 @@ static inline cpu_cycle rdtsc(void) {
         cpu_cycle delta_op = end_op - before_op;      \
         if ((delta_op < max) && (delta_op > 0)) {     \
           delta += delta_op;                          \
+          if (print_mid && include_timing) {          \
+            fprintf(stdout, "%llu %f\n", delta_op, delta_op - _t_overhead);\
+          } else if (print_mid && !include_timing) {  \
+            fprintf(stdout, "%llu\n", delta_op);      \
+          }                                           \
         } else {                                      \
           real_loop--;                                \
         }                                             \
@@ -81,7 +86,7 @@ static inline cpu_cycle rdtsc(void) {
       out = delta * 1.0 / real_loop - _t_overhead;    \
     }
 
-#define IN_LOOP_MM(out, loop_count, max, block)  _IN_LOOP_MM(out, loop_count, max, true, block)
+#define IN_LOOP_MM(out, loop_count, max, block)  _IN_LOOP_MM(out, loop_count, max, true, true, block)
 
 double get_timing_overhead();
 double get_loop_overhaead();
