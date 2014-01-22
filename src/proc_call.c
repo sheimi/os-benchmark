@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "bench.h"
 
-#define LOOP_TIMES 10000000
+#define LOOP_TIMES 10000
 
 #define PC(i) proc_call_##i
 static void PC(0)() {}
@@ -20,29 +20,37 @@ double proc_call_overhead(int arg_count) {
   switch(arg_count) {
     default:
     case 0:
-      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, PC(0)());
+      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, RUN_TEN_TIMES(PC(0)()));
       break;
     case 1:
-      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, PC(1)(1));
+      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, RUN_TEN_TIMES(PC(1)(1)));
       break;
     case 2:
-      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, PC(2)(1, 2));
+      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, RUN_TEN_TIMES(PC(2)(1, 2)));
       break;
     case 3:
-      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, PC(3)(1, 2, 3));
+      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, RUN_TEN_TIMES(PC(3)(1, 2, 3)));
       break;
     case 4:
-      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, PC(4)(1, 2, 3, 4));
+      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, RUN_TEN_TIMES(PC(4)(1, 2, 3, 4)));
       break;
     case 5:
-      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, PC(5)(1, 2, 3, 4, 5));
+      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, RUN_TEN_TIMES(PC(5)(1, 2, 3, 4, 5)));
       break;
     case 6:
-      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, PC(6)(1, 2, 3, 4, 5, 6));
+      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, RUN_TEN_TIMES(PC(6)(1, 2, 3, 4, 5, 6)));
       break;
     case 7:
-      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, PC(7)(1, 2, 3, 4, 5, 6, 7));
+      IN_LOOP_MM(overhead, LOOP_TIMES, MAX_PROC_CALL_CYCLE, RUN_TEN_TIMES(PC(7)(1, 2, 3, 4, 5, 6, 7)));
       break;
   }
   return overhead;
+}
+
+void benchmark_proc_call() {
+  int i;
+  for (i = 0; i <= 7; i++) {
+    fprintf(stdout, "--------------------------\n");
+    proc_call_overhead(i);
+  }
 }

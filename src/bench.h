@@ -44,6 +44,9 @@ static inline cpu_cycle rdtsc(void) {
 }
 #endif
 
+#define RUN_TEN_TIMES(p)\
+    p;p;p;p;p;p;p;p;p;p;
+
 #define _OUT_LOOP_MM(out, loop_count, include_loop, block) {         \
       int i;                                          \
       double _timing_overehad = get_timing_overhead();\
@@ -94,5 +97,6 @@ double get_loop_overhaead();
 // bench marks
 void benchmark_time_overhead();
 void benchmark_loop_overhead();
+void benchmark_proc_call();
 #endif
 
