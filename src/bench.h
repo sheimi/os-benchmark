@@ -1,10 +1,15 @@
 #ifndef BENCH_H
 #define BENCH_H
 
+#include <stdlib.h>
+#include <string.h>
+
 typedef unsigned long long int cpu_cycle;
 
 #define true 1
 #define false 0
+
+#define IS_EQUAL(s1, s2) (strcmp(s1, s2) == 0)
 
 #if defined(__i386__)
 static inline cpu_cycle rdtsc(void) {
@@ -81,5 +86,8 @@ static inline cpu_cycle rdtsc(void) {
 double get_timing_overhead();
 double get_loop_overhaead();
 
+// bench marks
+void benchmark_time_overhead();
+void benchmark_loop_overhead();
 #endif
 
