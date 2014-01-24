@@ -13,7 +13,6 @@ static inline void setenv_double(char* tag, double d) {
 }
 
 double get_timing_overhead() {
-  int i;
   if (getenv(TIMEING_OVERHEAD_TAG)) {
     double overhead = atof(getenv(TIMEING_OVERHEAD_TAG));
     return overhead;
@@ -26,7 +25,6 @@ double get_timing_overhead() {
 }
 
 double get_loop_overhaead() {
-  int i;
   if (getenv(LOOP_OVERHEAD_TAG)) {
     double overhead = atof(getenv(LOOP_OVERHEAD_TAG));
     return overhead;
