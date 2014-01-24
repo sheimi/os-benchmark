@@ -98,5 +98,7 @@ double get_loop_overhaead();
 void benchmark_time_overhead();
 void benchmark_loop_overhead();
 void benchmark_proc_call();
+void benchmark_process_context_switch();
+void benchmark_thread_context_switch();
 #endif
 
