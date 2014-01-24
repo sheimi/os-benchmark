@@ -8,16 +8,21 @@ void benchmark_sys_call() {
 	cpu_cycle before_call, after_call;
 	for (i = 0; i < LOOP_TIMES; i++) {
 		pid = fork();
-		if (pid == 0) {
+		if (pid < 0) {
+			fprintf(stderr, "fork error\n");
+			exit(0);
+		}
+		else if (pid == 0) {
 			before_call = rdtsc();
 			getpid();
 			after_call = rdtsc();
 			delta = after_call - before_call;
-			printf(stdout, "delta = %d\n", delta);
+			fprintf(stdout, "delta = %d\n", delta);
+			fflush(stdout);
 			exit(0);
 		}
 		wait(NULL);
 	}
-	printf(stderr, "syscall overhead = \n");
+	fprintf(stderr, "syscall overhead complete, check output \n");
 }
 
