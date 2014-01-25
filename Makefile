@@ -3,8 +3,19 @@ BIN_DIR=bin
 SRC_DIR=src
 CFLAG= -O0 -Wall -Winline -fno-omit-frame-pointer -funroll-loops
 
-LIBS=$(BIN_DIR)/measurement.o $(BIN_DIR)/proc_call.o $(BIN_DIR)/sys_call.o $(BIN_DIR)/cr_proc.o $(BIN_DIR)/cr_thread.o
-LIBS_DEP=measurement.o proc_call.o sys_call.o cr_proc.o cr_thread.o
+<<<<<<< HEAD
+LIBS=$(BIN_DIR)/measurement.o\
+		 $(BIN_DIR)/proc_call.o\
+		 $(BIN_DIR)/sys_call.o\
+		 $(BIN_DIR)/cr_proc.o\
+		 $(BIN_DIR)/cr_thread.o\
+		 $(BIN_DIR)/context_switch.o
+LIBS_DEP=measurement.o\
+				 proc_call.o\
+				 sys_call.o\
+				 cr_proc.o\
+				 cr_thread.o\
+				 context_switch.o
 
 ifneq ($(DEBUG),)
 	CFLAGS += -g -DDEBUG
@@ -32,6 +43,9 @@ cr_proc.o: pre-compile $(SRC_DIR)/cr_proc.c
 
 cr_thread.o: pre-compile $(SRC_DIR)/cr_thread.c
 	$(CC) -o $(BIN_DIR)/cr_thread.o -c $(SRC_DIR)/cr_thread.c
+
+context_switch.o: pre-compile $(SRC_DIR)/context_switch.c
+	$(CC) -o $(BIN_DIR)/context_switch.o -c $(SRC_DIR)/context_switch.c $(CFLAG)
 
 clean:
 	rm -rf $(BIN_DIR)

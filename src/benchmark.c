@@ -15,6 +15,8 @@ benchmark_t benchmarks[] = {
   {"sys_call_overhead", benchmark_sys_call},
   {"cr_proc_overhead", benchmark_cr_proc},
   {"cr_thread_overhead", benchmark_cr_thread},
+  {"process_context_switch", benchmark_process_context_switch},
+  {"thread_context_switch", benchmark_thread_context_switch},
   {"", 0},
 };
 
@@ -29,7 +31,8 @@ static inline void show_help() {
 
 int main(int argc, char* argv[]) {
   if (argc < 2) {
-    fprintf(stderr, "Too few arguments. please run \"benchmark help\" for help.\n");
+    fprintf(stderr, "Too few arguments. "
+            "please run \"benchmark help\" for help.\n");
     exit(1);
   }
   if (IS_EQUAL(argv[1], "help")) {
@@ -44,7 +47,8 @@ int main(int argc, char* argv[]) {
     }
     bm++;
   }
-  fprintf(stderr, "No such benchmark. please run \"benchmark help\" for help.\n");
+  fprintf(stderr, "No such benchmark. "
+          "please run \"benchmark help\" for help.\n");
   exit(1);
   return 0;
 }
