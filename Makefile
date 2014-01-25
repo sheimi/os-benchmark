@@ -2,8 +2,8 @@ CC=gcc
 BIN_DIR=bin
 SRC_DIR=src
 CFLAG= -O0 -Wall -Winline -fno-omit-frame-pointer -funroll-loops
+RESULT_DIR=results
 
-<<<<<<< HEAD
 LIBS=$(BIN_DIR)/measurement.o\
 		 $(BIN_DIR)/proc_call.o\
 		 $(BIN_DIR)/sys_call.o\
@@ -47,6 +47,9 @@ cr_thread.o: pre-compile $(SRC_DIR)/cr_thread.c
 context_switch.o: pre-compile $(SRC_DIR)/context_switch.c
 	$(CC) -o $(BIN_DIR)/context_switch.o -c $(SRC_DIR)/context_switch.c $(CFLAG)
 
+run_benchmark: benchmark
+	script/run_benchmark.sh
+
 clean:
 	rm -rf $(BIN_DIR)
-
+	rm -rf $(RESULT_DIR)

@@ -4,7 +4,7 @@
 
 #define LOOP_OVERHEAD_TAG "CSE211_LOOP_OVERHEAD"
 #define TIMEING_OVERHEAD_TAG "CSE211_TIMING_OVERHEAD"
-#define LOOP_TIMES 10000000
+#define LOOP_TIMES 1000000
 
 static inline void setenv_double(char* tag, double d) {
   char env[32];
