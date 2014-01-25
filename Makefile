@@ -51,6 +51,9 @@ context_switch.o: pre-compile $(SRC_DIR)/context_switch.c
 run_benchmark: benchmark
 	script/run_benchmark.sh
 
+set_performance:
+	echo performance > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+
 clean:
 	rm -rf $(BIN_DIR)
 	rm -rf $(RESULT_DIR)

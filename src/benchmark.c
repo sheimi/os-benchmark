@@ -42,6 +42,7 @@ int main(int argc, char* argv[]) {
   benchmark_t *bm = benchmarks;
   while (bm->func != 0) {
     if (IS_EQUAL(argv[1], bm->name)) {
+      rdtsc();
       bm->func();
       exit(0);
     }
