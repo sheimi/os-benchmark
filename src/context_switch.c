@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include "bench.h"
+#include <sys/wait.h>
 
 #define LOOP_COUNT 1000
 

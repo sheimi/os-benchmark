@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "bench.h"
+#include <sys/wait.h>
 
 #define LOOP_TIMES 10000
 void benchmark_sys_call() {
