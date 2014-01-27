@@ -54,6 +54,9 @@ run_benchmark: benchmark
 set_performance:
 	echo performance > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
 
+run_analysis:
+	script/analysis/analysis.py
+
 clean:
 	rm -rf $(BIN_DIR)
 	rm -rf $(RESULT_DIR)

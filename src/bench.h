@@ -58,7 +58,7 @@ static inline cpu_cycle rdtsc(void) {
         block;                                        \
       }                                               \
       cpu_cycle end_loop = rdtsc();                   \
-      out = (end_loop - before_loop - _timing_overehad) / LOOP_TIMES - _loop_overhead; \
+      out = (end_loop - before_loop - _timing_overehad) / loop_count - _loop_overhead; \
     }
 
 #define OUT_LOOP_MM(out, loop_count, block) _OUT_LOOP_MM(out, loop_count, true, block)
