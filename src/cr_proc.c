@@ -3,7 +3,7 @@
 #include "bench.h"
 #include <sys/wait.h>
 
-#define LOOP_TIMES 1000
+#define LOOP_TIMES 10000
 void benchmark_cr_proc() {
   int i, pid, delta;
   cpu_cycle before_call, son_after_call, father_after_call;

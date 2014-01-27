@@ -3,7 +3,7 @@
 #include "bench.h"
 #include <sys/wait.h>
 
-#define LOOP_TIMES 1000
+#define LOOP_TIMES 10000
 
 void *print_delta(void *ptr) {
   cpu_cycle thread_call = rdtsc();
