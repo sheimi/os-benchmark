@@ -47,7 +47,7 @@ def run_proc_call_overhead_ana():
             if l.startswith('-'):
                 datas.append([])
                 continue
-            datas[-1].append(int(l.split(' ')[0]))
+            datas[-1].append(int(l.split(' ')[0]) * 1.0 / 10)
     print "%s result:" % test_name
     for i, data in enumerate(datas):
         m = mean(data)
