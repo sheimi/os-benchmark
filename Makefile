@@ -51,6 +51,9 @@ context_switch.o: pre-compile $(SRC_DIR)/context_switch.c
 run_benchmark: benchmark
 	script/run_benchmark.sh
 
+run_analysis:
+	script/analysis/analysis.py
+
 clean:
 	rm -rf $(BIN_DIR)
 	rm -rf $(RESULT_DIR)

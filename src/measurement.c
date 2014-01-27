@@ -4,7 +4,7 @@
 
 #define LOOP_OVERHEAD_TAG "CSE211_LOOP_OVERHEAD"
 #define TIMEING_OVERHEAD_TAG "CSE211_TIMING_OVERHEAD"
-#define LOOP_TIMES 1000000
+#define LOOP_TIMES 10000
 
 static inline void setenv_double(char* tag, double d) {
   char env[32];
@@ -42,5 +42,10 @@ void benchmark_time_overhead() {
 }
 
 void benchmark_loop_overhead() {
-  printf("loop overhead: %f\n", get_loop_overhaead());
+  int i;
+  for (i = 0; i < LOOP_TIMES; i++) {
+    double loop_overhead = 0.0;
+    _OUT_LOOP_MM(loop_overhead, 1000, false, );
+    fprintf(stdout, "%f\n", loop_overhead);
+  }
 }
