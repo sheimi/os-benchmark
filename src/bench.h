@@ -101,5 +101,7 @@ void benchmark_proc_call();
 void benchmark_sys_call();
 void benchmark_cr_proc();
 void benchmark_cr_thread();
+void benchmark_process_context_switch();
+void benchmark_thread_context_switch();
 #endif
 
