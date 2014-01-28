@@ -15,7 +15,7 @@ void *print_delta(void *ptr) {
 void benchmark_cr_thread() {
   pthread_t thread;
   int i, delta;
-  cpu_cycle before_call, after_call;
+  cpu_cycle before_call, after_call, complete_call;
   for (i = 0; i < LOOP_TIMES; i++) {
     before_call = rdtsc();
     pthread_create(&thread, NULL,
@@ -24,7 +24,9 @@ void benchmark_cr_thread() {
     delta = after_call - before_call;
     fprintf(stdout, "father delta = %d\n", delta);
     pthread_join(thread, NULL);
-    
+    complete_call = rdtsc();
+    delta = complete_call - before_call;
+    fprintf(stdout, "complete delta = %d\n", delta);
   }
   fprintf(stderr, "create process overhead complete, check output \n");
 }

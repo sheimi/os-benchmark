@@ -6,7 +6,8 @@
 #define LOOP_TIMES 10000
 void benchmark_cr_proc() {
   int i, pid, delta;
-  cpu_cycle before_call, son_after_call, father_after_call;
+  cpu_cycle before_call, son_after_call,
+	father_after_call, complete_call;
   for (i = 0; i < LOOP_TIMES; i++) {
     before_call = rdtsc();
     pid = fork();
@@ -26,6 +27,10 @@ void benchmark_cr_proc() {
     fprintf(stdout, "father delta = %d\n", delta);
     fflush(stdout);
     wait(NULL);
+    complete_call = rdtsc();
+    delta = complete_call - before_call;
+    fprintf(stdout, "complete delta = %d\n", delta);
+    fflush(stdout);
   }
   fprintf(stderr, "create process overhead complete, check output \n");
 }
