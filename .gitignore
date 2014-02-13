@@ -27,3 +27,8 @@ bin
 # test
 test
 *result*
+
+*.pdf
+target
+
+report
