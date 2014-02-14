@@ -17,6 +17,7 @@ benchmark_t benchmarks[] = {
   {"cr_thread_overhead", benchmark_cr_thread},
   {"process_context_switch", benchmark_process_context_switch},
   {"thread_context_switch", benchmark_thread_context_switch},
+  {"ram_bandwidth", benchmark_ram_bw},
   {"", 0},
 };
 

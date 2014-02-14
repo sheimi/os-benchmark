@@ -10,13 +10,15 @@ LIBS=$(BIN_DIR)/measurement.o\
 		 $(BIN_DIR)/sys_call.o\
 		 $(BIN_DIR)/cr_proc.o\
 		 $(BIN_DIR)/cr_thread.o\
-		 $(BIN_DIR)/context_switch.o
+		 $(BIN_DIR)/context_switch.o\
+		 $(BIN_DIR)/ram_bw.o
 LIBS_DEP=measurement.o\
 				 proc_call.o\
 				 sys_call.o\
 				 cr_proc.o\
 				 cr_thread.o\
-				 context_switch.o
+				 context_switch.o\
+				 ram_bw.o
 
 ifneq ($(DEBUG),)
 	CFLAGS += -g -DDEBUG
@@ -47,6 +49,9 @@ cr_thread.o: pre-compile $(SRC_DIR)/cr_thread.c
 
 context_switch.o: pre-compile $(SRC_DIR)/context_switch.c
 	$(CC) -o $(BIN_DIR)/context_switch.o -c $(SRC_DIR)/context_switch.c $(CFLAG)
+
+ram_bw.o: pre-compile $(SRC_DIR)/ram_bw.c
+	$(CC) -o $(BIN_DIR)/ram_bw.o -c $(SRC_DIR)/ram_bw.c $(CFLAG)
 
 run_benchmark: benchmark
 	script/run_benchmark.sh
