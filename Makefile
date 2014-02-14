@@ -10,12 +10,14 @@ LIBS=$(BIN_DIR)/measurement.o\
 		 $(BIN_DIR)/sys_call.o\
 		 $(BIN_DIR)/cr_proc.o\
 		 $(BIN_DIR)/cr_thread.o\
+		 $(BIN_DIR)/memory_access_time.o\
 		 $(BIN_DIR)/context_switch.o
 LIBS_DEP=measurement.o\
 				 proc_call.o\
 				 sys_call.o\
 				 cr_proc.o\
 				 cr_thread.o\
+		 		 memory_access_time.o\
 				 context_switch.o
 
 ifneq ($(DEBUG),)
@@ -47,6 +49,9 @@ cr_thread.o: pre-compile $(SRC_DIR)/cr_thread.c
 
 context_switch.o: pre-compile $(SRC_DIR)/context_switch.c
 	$(CC) -o $(BIN_DIR)/context_switch.o -c $(SRC_DIR)/context_switch.c $(CFLAG)
+
+memory_access_time.o: pre-compile $(SRC_DIR)/memory_access_time.c
+	$(CC) -o $(BIN_DIR)/memory_access_time.o -c $(SRC_DIR)/memory_access_time.c $(CFLAG)
 
 run_benchmark: benchmark
 	script/run_benchmark.sh

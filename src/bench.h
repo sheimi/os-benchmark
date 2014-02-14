@@ -103,5 +103,6 @@ void benchmark_cr_proc();
 void benchmark_cr_thread();
 void benchmark_process_context_switch();
 void benchmark_thread_context_switch();
+void benchmark_mem_acc();
 #endif
 
