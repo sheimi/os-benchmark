@@ -15,7 +15,7 @@ typedef struct _dataType {
 
 void benchmark_ram_bw() {
 	cpu_cycle ts1, ts2;
-	dataType n, array[1024];
+	dataType n, array[1024*1024];
 	int i, j;
 	for (j = 0; j < LOOP_TIMES; j++, i=0) {
 		ts1 = rdtsc();
