@@ -36,7 +36,7 @@ int benchmark_mem_with_offset(int size_offset, int step)
 void benchmark_mem_acc()
 { 
   int i, j;
-  for (i = 0; i < 25; i++) {
+  for (i = 0; i < 28; i++) {
     for (j = 0; j < 20; j++) {
       benchmark_mem_with_offset(i, 1 << j);
     }
