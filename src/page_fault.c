@@ -8,9 +8,9 @@
 #include <errno.h>
 #include "bench.h"
 
-#define FILL_TIMES 512
-#define LOOP_TIMES 100
-#define STEP 4096
+#define FILL_TIMES 0
+#define LOOP_TIMES 256
+#define STEP 1024*1024
 
 void dommap(int fd, int size) {
 	char *bufp;
@@ -35,7 +35,7 @@ void dommap(int fd, int size) {
 	}
 	munmap(bufp, size);
 }
-int main() {
+void benchmark_page_fault() {
 	int fd, pagesize;
 	struct stat stat;
 	//system("fallocate -l 1G file.txt");
@@ -49,5 +49,4 @@ int main() {
 	dommap(fd, stat.st_size);
 	close(fd);
 	//system("rm file.txt");
-	return 0;
 }
