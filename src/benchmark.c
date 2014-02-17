@@ -18,6 +18,7 @@ benchmark_t benchmarks[] = {
   {"process_context_switch", benchmark_process_context_switch},
   {"thread_context_switch", benchmark_thread_context_switch},
   {"ram_bandwidth", benchmark_ram_bw},
+  {"page_fault", benchmark_page_fault},
   {"", 0},
 };
 

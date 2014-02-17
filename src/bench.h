@@ -105,5 +105,6 @@ void benchmark_process_context_switch();
 void benchmark_thread_context_switch();
 
 void benchmark_ram_bw();
+void benchmark_page_fault();
 #endif
 
