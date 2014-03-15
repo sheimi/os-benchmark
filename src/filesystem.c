@@ -9,12 +9,12 @@
 #define MAXFSIZE  (1 << 31)
 #define MINFSIZE  (1 << 24)
 #define CONTSIZE  (1 << 27)
-#define CONTPROC  (1 << 2)
+#define CONTPROC  (1 << 7)
 #define BUFSIZE   2048
 
 #define FILEBUFSIZE (128 * 1024)
 
-#define LOOP_NUM 10
+#define LOOP_NUM 100
 
 void benchmark_filecache()
 {
