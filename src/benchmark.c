@@ -18,6 +18,9 @@ benchmark_t benchmarks[] = {
   {"process_context_switch", benchmark_process_context_switch},
   {"thread_context_switch", benchmark_thread_context_switch},
   {"mem_acc", benchmark_mem_acc},
+  {"filecache", benchmark_filecache},
+  {"fileread", benchmark_fileread},
+  {"filecontention", benchmark_contention},
   {"", 0},
 };
 
