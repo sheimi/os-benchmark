@@ -107,5 +107,7 @@ void benchmark_mem_acc();
 void benchmark_filecache();
 void benchmark_fileread();
 void benchmark_contention();
+void benchmark_ram_bw();
+void benchmark_page_fault();
 #endif
 

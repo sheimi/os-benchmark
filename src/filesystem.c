@@ -10,6 +10,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+// for test
+#ifndef O_DIRECT
+#define O_DIRECT 0
+#endif
+
 #define FSMAXSIZE ((unsigned int)(1 << 30) * 2)
 #define GAPSIZE   (1 << 27)
 #define MAXFSIZE  (1 << 29)

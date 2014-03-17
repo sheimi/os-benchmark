@@ -21,6 +21,8 @@ benchmark_t benchmarks[] = {
   {"filecache", benchmark_filecache},
   {"fileread", benchmark_fileread},
   {"filecontention", benchmark_contention},
+  {"ram_bandwidth", benchmark_ram_bw},
+  {"page_fault", benchmark_page_fault},
   {"", 0},
 };
 
